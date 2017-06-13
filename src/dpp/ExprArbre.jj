@@ -46,7 +46,7 @@ ASAInstr parse() :
                                             { ASAInstr x, i = new ASAInstrBloc(); }
 {
     ( x = instruction() "\n"                { ((ASAInstrBloc)i).add(x); }
-    )*                                      { return i; }
+    )*     "f"                                 { return i; }
 }
 
 
