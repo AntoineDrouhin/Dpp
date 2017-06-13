@@ -11,5 +11,5 @@ package dpp;
  */
 public interface ASAInstr {
     
-    public void execute();
+    public void execute(Tortue t);
 }

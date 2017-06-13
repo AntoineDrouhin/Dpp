@@ -20,10 +20,10 @@ PARSER_BEGIN(ExprArbre)
     public class ExprArbre {
 	public static void main(String args[]) throws ParseException {
             ExprArbre syn = new ExprArbre(System.in);
-
             System.out.println("entrer une expression: ");
             ASAInstr a = syn.parse();
-            a.execute();
+            Interpreter i = new Interpreter(a);
+            i.run();
         }
     }
 
