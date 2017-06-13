@@ -1,0 +1,84 @@
+/*
+ * ExprArbre.jj
+ *
+ * Daniel Diaz - 2013
+ *
+ * Expressions arithmetiques en JavaCC: creation Arbre Syntaxe Abstraite.
+ */
+
+options {
+   OUTPUT_DIRECTORY = "../jjgener";
+   STATIC = false;
+}
+
+PARSER_BEGIN(ExprArbre)
+
+    package jjgener;
+
+    import asaexpr.*;
+
+    public class ExprArbre {
+	public static void main(String args[]) throws ParseException {
+            ExprArbre syn = new ExprArbre(System.in);
+
+            System.out.println("entrer une expression: ");
+            ASAInstr a = syn.parse();
+            a.execute();
+        }
+    }
+
+PARSER_END(ExprArbre)
+
+
+/* Partie syntaxique
+ *
+ * On ajoute une regle qui tient lieu d'axiome
+ * pour s'assurer qu'il y a bien un \n a la fin de l'expression.
+ *
+ * Chaque regle retourne l'ASA associe a la sous-expression
+ * qu'elle vient d'analyser.
+ */
+
+    // regle additionnelle: parse -> expression \n
+    // pour s'assurer qu'il y a bien un \n a la fin de l'expression
+ASAInst parse() :  
+                                            { ASAInst x, i = new ASAInstrBloc(); }
+{
+    ( x = instruction() "\n"                { i.add(x); }
+    )*                                      { return i; }
+}
+
+
+    // 
+ASAInst instruction() : 
+                                            { ASAInst x; ASAExpr y; }
+{
+    (   "a" y = expression()                { x = new ASAInstrAvancer(y); }
+    |   "t" y = expression()                { x = new ASAInstrTourner(y); }
+    )                                       { return x; }
+}
+
+    //
+ASAExpr expression() :
+                                            {ASAExpr x; Token t;}
+{
+    (
+        t = <ENTIER>                        {x = new ASAExprEntier(Integer.parseInt(t.image));}
+    )
+                                            {return x; }
+}
+
+/* Partie lexicale
+ * 
+ * Les unites constantes sont directement referencees dans les regles.
+ * On ne decrit donc que les separateurs et les unites non constantes.
+ */
+
+SKIP : 
+{ " " | "\t" | "\r" }
+
+
+TOKEN :
+{ 
+    < ENTIER: ( ["0"-"9"] )+ >
+}
