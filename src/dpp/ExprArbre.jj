@@ -15,7 +15,8 @@ PARSER_BEGIN(ExprArbre)
 
     package jjgener;
 
-    import asaexpr.*;
+    import dpp.*;
+    import canvas.*;
 
     public class ExprArbre {
 	public static void main(String args[]) throws ParseException {
@@ -41,17 +42,17 @@ PARSER_END(ExprArbre)
 
     // regle additionnelle: parse -> expression \n
     // pour s'assurer qu'il y a bien un \n a la fin de l'expression
-ASAInst parse() :  
-                                            { ASAInst x, i = new ASAInstrBloc(); }
+ASAInstr parse() :  
+                                            { ASAInstr x, i = new ASAInstrBloc(); }
 {
-    ( x = instruction() "\n"                { i.add(x); }
+    ( x = instruction() "\n"                { ((ASAInstrBloc)i).add(x); }
     )*                                      { return i; }
 }
 
 
     // 
-ASAInst instruction() : 
-                                            { ASAInst x; ASAExpr y; }
+ASAInstr instruction() : 
+                                            { ASAInstr x; ASAExpr y; }
 {
     (   "a" y = expression()                { x = new ASAInstrAvancer(y); }
     |   "t" y = expression()                { x = new ASAInstrTourner(y); }
