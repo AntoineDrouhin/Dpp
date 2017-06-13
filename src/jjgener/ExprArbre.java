@@ -6,11 +6,10 @@
     public class ExprArbre implements ExprArbreConstants {
         public static void main(String args[]) throws ParseException {
             ExprArbre syn = new ExprArbre(System.in);
-
             System.out.println("entrer une expression: ");
-            ASAExpr a = syn.parse();
-            System.out.println(a.notationExplorateur());
-            System.out.println("Evaluation : " + a.evalue());
+            ASAInstr a = syn.parse();
+            Interpreter i = new Interpreter(a);
+            i.run();
         }
 
 /* Partie syntaxique

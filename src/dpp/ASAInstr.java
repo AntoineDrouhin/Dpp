@@ -5,6 +5,8 @@
  */
 package dpp;
 
+import canvas.Tortue;
+
 /**
  *
  * @author Antoine

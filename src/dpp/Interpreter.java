@@ -5,6 +5,9 @@
  */
 package dpp;
 
+import canvas.Tortue;
+import canvas.TortueImpl;
+
 /**
  *
  * @author aureliengarret

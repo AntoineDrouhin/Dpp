@@ -5,6 +5,7 @@
  */
 package dpp;
 
+import canvas.Tortue;
 import java.util.ArrayList;
 import java.util.List;
 
