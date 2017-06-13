@@ -7,6 +7,7 @@ package dpp;
 
 import canvas.Tortue;
 import canvas.TortueImpl;
+import javax.swing.JFrame;
 
 /**
  *
@@ -14,11 +15,17 @@ import canvas.TortueImpl;
  */
 public class Interpreter {
     private ASAInstr prog;
-    private Tortue t;
+    private TortueImpl t;
     
     public Interpreter(ASAInstr prog) {
         this.prog=prog;
         t = new TortueImpl();
+        
+        JFrame mainFrame = new JFrame("Graphics demo");
+        mainFrame.getContentPane().add(t);
+        mainFrame.pack();
+        mainFrame.setSize(500, 500);
+        mainFrame.setVisible(true);
     }
     
     public void run() {

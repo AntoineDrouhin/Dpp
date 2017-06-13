@@ -11,7 +11,7 @@ public interface ExprArbreConstants {
   /** End of File. */
   int EOF = 0;
   /** RegularExpression Id. */
-  int ENTIER = 7;
+  int ENTIER = 8;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -20,6 +20,7 @@ public interface ExprArbreConstants {
   String[] tokenImage = {
     "<EOF>",
     "\"\\n\"",
+    "\"f\"",
     "\"a\"",
     "\"t\"",
     "\" \"",

@@ -29,8 +29,8 @@
     label_1:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case 2:
       case 3:
+      case 4:
         ;
         break;
       default:
@@ -41,7 +41,8 @@
       jj_consume_token(1);
                                               ((ASAInstrBloc)i).add(x);
     }
-                                              {if (true) return i;}
+    jj_consume_token(2);
+                                                 {if (true) return i;}
     throw new Error("Missing return statement in function");
   }
 
@@ -49,13 +50,13 @@
   final public ASAInstr instruction() throws ParseException {
                                               ASAInstr x; ASAExpr y;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case 2:
-      jj_consume_token(2);
+    case 3:
+      jj_consume_token(3);
       y = expression();
                                               x = new ASAInstrAvancer(y);
       break;
-    case 3:
-      jj_consume_token(3);
+    case 4:
+      jj_consume_token(4);
       y = expression();
                                               x = new ASAInstrTourner(y);
       break;
@@ -92,7 +93,7 @@
       jj_la1_init_0();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0xc,0xc,};
+      jj_la1_0 = new int[] {0x18,0x18,};
    }
 
   /** Constructor with InputStream. */
@@ -209,7 +210,7 @@
   /** Generate ParseException. */
   public ParseException generateParseException() {
     jj_expentries.clear();
-    boolean[] la1tokens = new boolean[8];
+    boolean[] la1tokens = new boolean[9];
     if (jj_kind >= 0) {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
@@ -223,7 +224,7 @@
         }
       }
     }
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < 9; i++) {
       if (la1tokens[i]) {
         jj_expentry = new int[1];
         jj_expentry[0] = i;

@@ -58,6 +58,15 @@ public class TortueImpl extends JComponent implements Tortue {
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
     
+    // draw entire component white
+    g.setColor(Color.white);
+    g.fillRect(0, 0, getWidth(), getHeight());
+
+    g.setColor(Color.black);
+    
+    this.currentPosX = STARTPOS_X;
+    this.currentPosY = STARTPOS_Y;
+    this.currentAngle = START_ANGLE;
     
     for(Instruction i : l) {
         switch(i.type){
@@ -72,12 +81,7 @@ public class TortueImpl extends JComponent implements Tortue {
                 currentAngle = (currentAngle + i.value) % 360;
         }
     }
-    
-    // draw entire component white
-    g.setColor(Color.white);
-    g.fillRect(0, 0, getWidth(), getHeight());
-
-    g.setColor(Color.black);
+     
   }
     
     
